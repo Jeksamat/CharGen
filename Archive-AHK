@@ -1,0 +1,1364 @@
+KARAKTER:
+gui destroy
+gui, font, s12
+
+Gui, add, text, x10 y+10, NEV:
+Gui, add, edit, x+10 w200 vNEV,%NEV%
+Gui, add, button, w50 x+10 gGENNEV, GEN
+
+Gui, add, text, x10 y+10, FAJ:
+Gui Add, DDL, vFAJ x+10 w100 Choose1, Ember||Elf||Torpe||Felelf||Udvariork
+
+Gui, add, text, x10 y+10, JELLEM:
+Gui Add, DDL, vJELLEM1 x+10 w100 Choose2, Rend||Elet||Semleges
+Gui, add, text, x+10,-
+Gui Add, DDL, vJELLEM2 x+10 w100 Choose3, Halal||Semleges||Kaosz
+
+Gui, add, text, x10 y+10, KASZT:
+Gui Add, DDL, vKASZT x+10 w150 Choose1, Harcos||Gladiator||Fejvadasz||Lovag||Amazon||Barbar||Shadleki_Vivo||Aleggheri_Vivo||Den_Aliud_Vivo||Tolvaj||Bard||Domvik_pap*||Ranagol_pap*||Arel_pap*||Tharr_pap*||Kyel_pap*||Domvik_paladin*||Ranagol_paladin*||Dreina_paladin*||Krad_paladin*||Uwel_paladin*||Darton_paladin*||Harcmuvesz||Kardmuvesz||Boszorkany||BM||Tuzvarazslo||Varazslo||Polgar
+
+Gui, add, text, x10 y+10, SZINT:
+Gui, add, edit, number x+10 w50 vLVL limit2, 1
+
+Gui, add, button, w50 x10 y+10 default gOKKAR, OK
+Gui, show, w350 h250, Karakter
+return
+
+GENNEV:
+NEV=
+Random, x, 2, 6
+
+loop, %x% {
+	Random, NEVK, 0, 104
+	Random, MSMG, 1, 2
+
+	if  (MSMG = 1)  {
+		Array1 := ["ab", "ac", "ad", "af", "ag", "ah", "aj", "ak", "al", "am", "an", "ap", "aq", "ar", "as", "at", "av", "aw", "ax", "ay", "az", "_", "eb", "ec", "ed", "ef", "eg", "eh", "ej", "ek", "el", "em", "en", "ep", "eq", "er", "es", "et", "ev", "ew", "ex", "ey", "ez", "_", "ib", "ic", "id", "if", "ig", "ih", "ij", "ik", "il", "im", "in", "ip", "iq", "ir", "is", "it", "iv", "iw", "ix", "iy", "iz", "_", "ob", "oc", "od", "of", "og", "oh", "oj", "ok", "ol", "om", "on", "op", "oq", "or", "os", "ot", "ov", "ow", "ox", "oy", "oz", "_", "ub", "uc", "ud", "uf", "ug", "uh", "uj", "uk", "ul", "um", "un", "up", "uq", "ur", "us", "ut", "uv", "uw", "ux", "uy", "uz"]
+		NEVT= % Array1[NEVK]
+	}
+	else {
+		Array2 := ["ba", "ca", "da", "fa", "ga", "ha", "ja", "ka", "la", "ma", "na", "pa", "qa", "ra", "sa", "ta", "va", "wa", "xa", "ya", "za", "_", "be", "ce", "de", "fe", "ge", "he", "je", "ke", "le", "me", "ne", "pe", "qe", "re", "se", "te", "ve", "we", "xe", "ye", "ze", "_", "bi", "ci", "di", "fi", "gi", "hi", "ji", "ki", "li", "mi", "ni", "pi", "qi", "ri", "si", "ti", "vi", "wi", "xi", "yi", "zi", "_", "bo", "co", "do", "fo", "go", "ho", "jo", "ko", "lo", "mo", "no", "po", "qo", "ro", "so", "to", "vo", "wo", "xo", "yo", "zo", "_", "bu", "cu", "du", "fu", "gu", "hu", "ju", "ku", "lu", "mu", "nu", "pu", "qu", "ru", "su", "tu", "vu", "wu", "xu", "yu", "zu"]
+		NEVT= % Array2[NEVK]
+	}
+	NEV=%NEV%%NEVT%
+}
+goto KARAKTER
+return
+
+OKKAR:
+guicontrolget NEV
+guicontrolget FAJ
+guicontrolget LVL
+guicontrolget JELLEM1
+guicontrolget JELLEM2
+guicontrolget KASZT
+goto KONSTANSOK
+return
+
+FOERTEKEK:
+gui destroy
+gui, font, s12
+
+Gui, add, text, x10 y+10, Ero:
+Gui, add, edit, number x+10 w50 vEro limit2,%Ero%
+Gui, add, text, x10 y+10, Ugyesseg:
+Gui, add, edit, number x+10 w50 vUgy limit2,%Ugy%
+Gui, add, text, x10 y+10, Gyorsasag:
+Gui, add, edit, number x+10 w50 vGyo limit2,%Gyo%
+Gui, add, text, x10 y+10, Allokepesseg:
+Gui, add, edit, number x+10 w50 vAll limit2,%All%
+Gui, add, text, x10 y+10, Egeszseg:
+Gui, add, edit, number x+10 w50 vEge limit2,%Ege%
+Gui, add, text, x10 y+10, Szepseg:
+Gui, add, edit, number x+10 w50 vSze limit2,%Sze%
+Gui, add, text, x10 y+10, Inteligencia:
+Gui, add, edit, number x+10 w50 vInt limit2,%Int%
+Gui, add, text, x10 y+10, Akaratero:
+Gui, add, edit, number x+10 w50 vAka limit2,%Aka%
+Gui, add, text, x10 y+10, Asztral:
+Gui, add, edit, number x+10 w50 vAst limit2,%Ast%
+
+Gui, add, button, w50 x10 y+10 default gOKFERT, OK
+Gui, add, button, w50 x+10 gGENFERT, GEN
+Gui, show, w200 h400, FOERTEKEK
+return
+
+OKFERT:
+guicontrolget Ero
+guicontrolget Ugy
+guicontrolget Gyo
+guicontrolget All
+guicontrolget Ege
+guicontrolget Sze
+guicontrolget Int
+guicontrolget Aka
+guicontrolget Ast
+if  (Ero > 20 or Ugy > 20 or Gyo > 20 or All > 20 or Ege > 20 or Sze > 20 or Int > 20 or Aka > 20 or Ast > 20) {
+	msgbox Egy vagy tobb ertek tul magas.
+	goto FOERTEKEK
+}
+else if  (Ero = "" or Ugy = "" or Gyo = "" or All = "" or Ege = "" or Sze = "" or Int = "" or Aka = "" or Ast = "") {
+	msgbox Egy vagy tobb ertek hianyzik.
+	goto FOERTEKEK
+} 
+else {
+	Ero := Ero+%FAJ%_BEro
+	Ugy := Ugy+%FAJ%_BUgy
+	Gyo := Gyo+%FAJ%_BGyo
+	All := All+%FAJ%_BAll
+	Ege := Ege+%FAJ%_BEge
+	Sze := Sze+%FAJ%_BSze
+	Int := Int+%FAJ%_BInt
+	Aka := Aka+%FAJ%_BAka
+	Ast := Ast+%FAJ%_BAst
+
+	BUGRAS=0
+	P=1
+	goto HMERT
+}
+Return
+
+GENFERT:
+Random, REro, %KASZT%_Ero_min,%KASZT%_Ero_max
+Ero=%REro%
+Random, RUgy, %KASZT%_Ugy_min,%KASZT%_Ugy_max
+Ugy=%RUgy%
+Random, RGyo, %KASZT%_Gyo_min,%KASZT%_Gyo_max
+Gyo=%RGyo%
+Random, RAll, %KASZT%_All_min,%KASZT%_All_max
+All=%RAll%
+Random, RSze, %KASZT%_Sze_min,%KASZT%_Sze_max
+Sze=%RSze%
+Random, REge, %KASZT%_Ege_min,%KASZT%_Ege_max
+Ege=%REge%
+Random, RInt, %KASZT%_Int_min,%KASZT%_Int_max
+Int=%RInt%
+Random, RAka, %KASZT%_Aka_min,%KASZT%_Aka_max
+Aka=%RAka%
+Random, RAst, %KASZT%_Ast_min,%KASZT%_Ast_max
+Ast=%RAst%
+goto FOERTEKEK
+return
+
+HMERT:
+gui destroy
+gui, font, s12
+
+HM := LVL * %KASZT%_HMS - LVL * 2 * %KASZT%_KHM
+Gui, add, text, x10 y+10, %HM% HM all rendelkezesre
+
+Gui, add, text, x10 y+10, KE:
+Gui, add, edit, number x+10 w50 vBKE,%BKE%
+KE := %KASZT%_KEA+Gyo-10+Ugy-10
+Gui, add, text, x+10, +%KE%
+
+Gui, add, text, x10 y+10, TE:
+Gui, add, edit, number x+10 w50 vBTE, %BTE%
+TE := %KASZT%_TEA+Gyo-10+Ugy-10+Ero-10+LVL*%KASZT%_KHM
+Gui, add, text, x+10, +%TE%
+
+Gui, add, text, x10 y+10, VE:
+Gui, add, edit, number x+10 w50 vBVE,%BVE%
+VE := %KASZT%_VEA+Gyo-10+Ugy-10+LVL*%KASZT%_KHM
+Gui, add, text, x+10, +%VE%
+
+Gui, add, text, x10 y+10, CE:
+Gui, add, edit, number x+10 w50 vBCE,%BCE%
+CE := %KASZT%_CEA+Ugy-10
+	if (FAJ="Elf"){
+		CE:=CE+30
+	}
+	if (FAJ="Felelf"){
+		CE:=CE+15
+	}
+Gui, add, text, x+10, +%CE%
+
+Gui, add, text, x10 y+10, FP:
+	FPS=0
+	Loop,%LVL%{
+		Random,RFP,%KASZT%_FPS_min,%KASZT%_FPS_max
+		FPS := FPS+RFP
+	}
+FP := %KASZT%_FPA+Aka-10+All-10+FPS
+Gui, add, text, x+10, %FP%
+
+Gui, add, text, x10 y+10, EP:
+EP := %KASZT%_EPA+Ege-10
+Gui, add, text, x+10, %EP%
+
+	MPA=0
+	MPS=0
+		if (Kaszt="Bard"){
+			MPA:=Int-10
+			MPS:=Int-10
+		}
+		if (Kaszt="Domvik_pap"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Ranagol_pap"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Arel_pap"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Tharr_pap"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Kyel_pap"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Domvik_paladin"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Ranagol_paladin"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Dreina_paladin"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Krad_paladin"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Uwel_paladin"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Darton_paladin"){
+		MPA=0
+		MPS=0
+		}
+		if (Kaszt="Boszorkany"){
+		MPA=7
+		MPS=7
+		}
+		if (Kaszt="BM"){
+		MPA=7
+		MPS=7
+		}
+		if (Kaszt="Tuzvarazslo"){
+		MPA=6
+		MPS=6
+		}
+		if (Kaszt="Varazslo"){
+		MPA=10
+		MPS=10
+		}
+MP := MPA+MPS*(LVL-1)
+If (KASZT = "Harcos" or KASZT = "Gladiator" or KASZT = "Fejvadasz" or KASZT = "Lovag" or KASZT = "Amazon" or KASZT = "Barbar" or KASZT = "Tolvaj" or KASZT = "Harcmuvesz" or KASZT = "Kardmuvesz") {
+}
+Else{
+	Gui, add, text, x10 y+10, MP:  %MP%
+}
+PSZIP=0
+If (Aka >= 12 and Ast >= 12) {
+	If (KASZT = "Harcos" or KASZT = "Gladiator" or KASZT = "Lovag" or KASZT = "Amazon" or KASZT = "Barbar" or KASZT = "Tolvaj") {
+		Gui, add, text, x10 y+10, PSZI:
+		Gui Add, DDL, vPSZI x+10 w100 Choose%P%, Na||Af||Mf
+		PSZIV=1
+	}
+	Else
+		PSZI:=%KASZT%_PSZI
+}
+
+KP:=%Kaszt%_KPA+%Kaszt%_KPS*LVL-%Kaszt%_KPS+Int-10+Ugy-10
+UGRAS:=%Kaszt%_UGRA
+MaxSzazalek:=%Kaszt%_SzazalekA*LVL
+Gui, add, text, x10 y+10, KP:  %KP%
+Gui, add, text, x10 y+10, Ugrasra szant KP:
+Gui, add, edit, number x+10 w50 vBUGRAS, %BUGRAS%
+Gui, add, text, x+10,*3 +%UGRAS%
+If (KASZT = "Fejvadasz" or KASZT = "Bard" or KASZT = "Harcmuvesz" or KASZT = "Kardmuvesz" or KASZT = "Tolvaj") {
+	Gui, add, text, x10 y+10, MaxSzazalek:  %MaxSzazalek%
+	Gui, add, text, x10 y+10, UgrasSzazalek:
+	Gui, add, edit, number x+10 w50 vUGRASSZAZALEK, %UGRASSZAZALEK%
+	Gui, add, text, x+10
+	UGRASV=1
+}
+
+Gui, add, button, w50 x10 y+10 default gOKHM, OK
+Gui, add, button, w50 x+10 gGENHM, GEN
+Gui, show, w300 h450, HARCERTEKEK
+return
+
+OKHM:
+guicontrolget BKE
+guicontrolget BTE
+guicontrolget BVE
+guicontrolget BCE
+if(UGRASV=1){
+	guicontrolget UGRASSZAZALEK
+	MaxSzazalek:=%Kaszt%_SzazalekA*LVL-UGRASSZAZALEK
+}
+guicontrolget BUGRAS
+KP:=%Kaszt%_KPA+%Kaszt%_KPS*LVL-%Kaszt%_KPS+Int-10+Ugy-10-BUGRAS
+if (PSZIV=1)
+	guicontrolget PSZI
+KE := KE+BKE
+TE := TE+BTE
+VE := VE+BVE
+CE := CE+BCE
+
+HMH := BKE+BTE+BVE+BCE
+HM := LVL * %KASZT%_HMS - HMH - LVL * 2 * %KASZT%_KHM
+
+If (PSZI="Af"){
+	PSZIP:=4+LVL*3-3
+}
+else if (PSZI="Mf"){
+	PSZIP:=5+LVL*4-4
+}
+else if (PSZI="Slan"){
+	PSZIP:=6+LVL*5-5
+}
+else if (PSZI="Kyr"){
+	PSZIP:=7+LVL*6-6
+}
+
+If (HM<0){
+	msgbox Tul sok HMet koltottel. Maradt %THM% pontod. Probald ujra!
+	Goto HMERT
+}
+else If (HM>0){
+	msgbox Maradt %HM% pontod. Probald ujra!
+	goto HMERT
+}
+else If (KP<0){
+	msgbox Tul sok KP-t koltottel. Probald ujra!
+	goto HMERT
+}
+else If (MaxSzazalek<0){
+	msgbox Tul sok szazalekot koltottel. Probald ujra!
+	goto HMERT
+}
+else {
+	A=1
+	B=1
+	C=1
+	D=1
+	E=1
+	F=1
+	G=1
+	H=1
+	I=1
+	goto FELSZERELES
+}
+return
+
+GENHM:
+Random,RKE,0,%HM%
+BKE := RKE
+HM := HM-RKE
+Random,RTE,0,%HM%
+HM := HM-RTE
+BTE := RTE
+Random,RVE,0,%HM%
+HM := HM-RVE
+BVE := RVE
+BCE := HM
+Random,BUGRAS,0,%KP%
+if(UGRASV=1)
+	Random,UGRASSZAZALEK,0,%MaxSzazalek%
+Random,P,1,3
+goto HMERT
+return
+
+FELSZERELES:
+gui destroy
+gui, font, s12
+
+Gui, add, text, x10 y+10, FEGYVER1:
+Gui Add, DDL, vF1 x+10 w200 Choose%A%, Okol||Buzogany_Shadleki||Csatabard_Egykezes||Csatabard_Ketkezes
+Gui, add, text, x10 y+10, FEGYVER2:
+Gui Add, DDL, vF2 x+10 w200 Choose%B%, Okol||Buzogany_Shadleki||Csatabard_Egykezes||Csatabard_Ketkezes
+Gui, add, text, x10 y+10, FEGYVER3:
+Gui Add, DDL, vF3 x+10 w200 Choose%C%, Semmi||Fuvocso||Ij_rovid||Ij_hosszu
+
+Gui, add, text, x10 y+10, PAJZS:
+Gui Add, DDL, vPAJZS x+10 w100 Choose%I%, Semmi||Kicsi||Kozepes||Nagy
+
+Gui, add, text, x10 y+10, PANCEL:
+Gui Add, DDL, vPAN x+10 w200 Choose%D%, Semmi||Teljes_acel||Teljes_bronz||Teljes_abbitacel||Teljes_mithrill
+;||Lemezvertezet_acel||Lemezvertezet_bronz||Lemezvertezet_abbitacel||Lemezvertezet_mithrill
+
+Gui, add, text, x10 y+10, TASKA:
+Gui Add, DDL, vTASKA x+10 w130 Choose%E%, Semmi||Hatizsak_kicsi||Hatizsak_nagy||Ovtaska||Zsak||Tarisznya
+
+Gui, add, text, x10 y+10, TARGY1:
+Gui Add, DDL, vKIEG1 x+10 w120 Choose%F%, Semmi||Faklya||Fenoko||Irotoll||Kova&Acel||Kotel_20m||kreta||Kulacs||Lampas||maszovas||olaj||Papir||Pergamen||Sator_kicsi||Sator_nagy||Sip||Szeg||Takaro||Tinta||Tomlo||Tukor_fem||Tuzszerszam||Varrotu||Cerna||Torulkozo
+Gui, add, text, x10 y+10, TARGY2:
+Gui Add, DDL, vKIEG2 x+10 w120 Choose%G%, Semmi||Faklya||Fenoko||Irotoll||Kova&Acel||Kotel_20m||kreta||Kulacs||Lampas||maszovas||olaj||Papir||Pergamen||Sator_kicsi||Sator_nagy||Sip||Szeg||Takaro||Tinta||Tomlo||Tukor_fem||Tuzszerszam||Varrotu||Cerna||Torulkozo
+Gui, add, text, x10 y+10, TARGY3:
+Gui Add, DDL, vKIEG3 x+10 w120 Choose%H%, Semmi||Faklya||Fenoko||Irotoll||Kova&Acel||Kotel_20m||kreta||Kulacs||Lampas||maszovas||olaj||Papir||Pergamen||Sator_kicsi||Sator_nagy||Sip||Szeg||Takaro||Tinta||Tomlo||Tukor_fem||Tuzszerszam||Varrotu||Cerna||Torulkozo
+
+Gui, add, button, w50 x10 y+10 default gOKF, OK
+Gui, add, button, w50 x+10 gFRND, RND
+Gui, show, w350 h400, FELSZERELES
+return
+
+FRND:
+Random,A,1,4
+Random,B,1,4
+Random,C,1,4
+
+Random,I,1,4
+
+Random,D,1,5
+
+Random,E,1,6
+
+Random,F,1,25
+Random,G,1,25
+Random,H,1,25
+goto FELSZERELES
+return
+
+OKF:
+guicontrolget F1
+guicontrolget F2
+guicontrolget F3
+guicontrolget PAJZS
+guicontrolget PAN
+guicontrolget TASKA
+guicontrolget KIEG1
+guicontrolget KIEG2
+guicontrolget KIEG3
+goto FELSZERT
+return
+
+KARLAP:
+gui destroy
+gui, font, s12
+
+Gui, add, text, x+10,%NEV%
+Gui, add, text, x+10,/
+Gui, add, Text, x+10,%FAJ%
+Gui, add, text, x+10,/
+Gui, add, Text, x+10,%KASZT%
+Gui, add, text, x+10,/
+Gui, add, Text, x+10,%LVL%.szint
+Gui, add, text, x+10,/
+Gui, add, Text, x+10,%Jellem1%-%Jellem2%
+
+Gui, add, text, x10 y+20,Ero:
+Gui, add, Text, x+10, %Ero%
+Gui, add, text, x+30, Sebzesbonusz:
+	BSP := Ero-16
+	if (BSP<1)
+		BSP=0
+Gui, add, Text, x+10, %BSP%
+Gui, add, text, x+50, MENTAL ME:
+MME:=Aka-10+PSZIP
+Gui, add, Text, x+10, %MME%
+
+Gui, add, text, x10 y+10,Ugy:
+Gui, add, Text, x+10, %Ugy%
+	PUGY:=Ugy-MGT-PMGT
+Gui, add, text, x+30,Pancelban:
+Gui, add, Text, x+10,%PUGY%
+Gui, add, text, x+50, ASZTRAL ME:
+AME:=Ast-10+PSZIP
+Gui, add, Text, x+10, %AME%
+
+Gui, add, text, x10 y+10,Gyo:
+Gui, add, Text, x+10, %Gyo%
+	PGYO:=Gyo-MGT-PMGT
+Gui, add, text, x+30,Pancelban:
+Gui, add, Text, x+10,%PGYO%
+
+Gui, add, text, x10 y+10,All:
+Gui, add, Text, x+10, %All%
+Gui, add, text, x+10,Ege:
+Gui, add, Text, x+10, %Ege%
+Gui, add, text, x+10,Sze:
+Gui, add, Text, x+10, %Sze%
+
+Gui, add, text, x10 y+10,Int:
+Gui, add, Text, x+10, %Int%
+Gui, add, text, x+10,Aka:
+Gui, add, Text, x+10, %Aka%
+Gui, add, text, x+10,Ast:
+Gui, add, Text, x+10, %Ast%
+
+Gui, add, text, x10 y+20,KE:
+Gui, add, Text, x+10, %KE%
+Gui, add, text, x+10,TE:
+Gui, add, Text, x+10, %TE%
+Gui, add, text, x+10,VE:
+Gui, add, Text, x+10, %VE%
+Gui, add, text, x+10,CE:
+Gui, add, Text, x+10, %CE%
+Gui, add, text, x10 y+10,FP:
+Gui, add, Text, x+10, %FP%
+Gui, add, text, x+10,EP:
+Gui, add, Text, x+10, %EP%
+Gui, add, text, x+30,MP:
+Gui, add, Text, x+10, %MP%
+Gui, add, text, x+30,Pszi pontok:
+Gui, add, Text, x+10, %PSZIP%
+Gui, add, text, x10 y+10,KP:
+Gui, add, Text, x+10, %KP%
+Gui, add, text, x+10,Ugras:
+Gui, add, Text, x+10, %UGRAS%
+Gui, add, text, x+10,VEbonusz:
+	VEbonusz:= Floor(UGRAS/5)
+Gui, add, Text, x+10, %VEbonusz%
+
+Gui, add, text, x10 y+30,FELSZERELES:
+Gui, add, text, x10 y+10,Fegyver1: %F1%  KE:%F1KE%(%BF1KE%)  TE:%F1TE%(%BF1TE%)  VE:%F1VE%(%BF1VE%)  %F1SP%
+Gui, add, text, x10 y+10,Fegyver2: %F2%  KE:%F2KE%(%BF2KE%)  TE:%F2TE%(%BF2TE%)  VE:%F2VE%(%BF2VE%)  %F2SP%
+Gui, add, text, x10 y+10,Fegyver3: %F3%  KE:%F3KE%(%BF3KE%)  CE:%F3CE%(%BF3CE%)  %F3SP%
+
+Gui, add, text, x10 y+20,Pajzs: %PAJZS%  KE:%PKE%(%BPKE%)  MGT:%PMGT%  TE:%PTE%(%BPTE%)  VE:%PVE%(%BPVE%)  %PSP%
+
+Gui, add, text, x10 y+10,Pancel:%PAN%  SFE:%SFE%  MGT:%MGT%
+
+Gui, add, text, x10 y+20,Taska:%TASKA%
+
+Gui, add, text, x10 y+10,Kiegeszito1:%KIEG1%
+Gui, add, text, x10 y+10,Kiegeszito2:%KIEG2%
+Gui, add, text, x10 y+10,Kiegeszito3:%KIEG3%
+
+Random,AU,%Kaszt%_AU_min,%Kaszt%_AU_max
+Gui, add, text, x10 y+10,Vagyon:%AU% Arany
+
+Gui, add, button, w100 x10 y+10 gNEW, Uj Karakter
+Gui, add, button, w50 x+10 default gPRINT, Print
+Gui, show, w550 h700, Karakterlap
+return
+
+NEW:
+reload
+return
+
+PRINT:
+Iniwrite, ___________________________________________________, %NEV%.txt, Karakter
+Iniwrite, KP:%KP% Ugras:%UGRAS% VEbunusz:%VEBonusz%, %NEV%.txt, Karakter
+Iniwrite, MP:%MP%  %PSZI% PSZI:%PSZIP%  AME:%AME% MME:%MME%, %NEV%.txt, Karakter
+Iniwrite, KE:%KE%  TE:%TE%  VE:%VE%  CE:%CE%  FP:%FP%  EP:%EP%, %NEV%.txt, Karakter
+Iniwrite, ___________________________________________________, %NEV%.txt, Karakter
+Iniwrite, ALL:%All%  EGE:%Ege%  SZE:%Sze%  INT:%Int%  AKA:%Aka%  AST:%Ast%, %NEV%.txt, Karakter
+Iniwrite, GYO:%Gyo%  Pancelban:%PGYO%, %NEV%.txt, Karakter
+Iniwrite, UGY:%Ugy%  Pancelban:%PUGY%, %NEV%.txt, Karakter
+Iniwrite, ERO:%Ero%  SPbonusz:%BSP%, %NEV%.txt, Karakter
+Iniwrite, ___________________________________________________, %NEV%.txt, Karakter
+Iniwrite, %NEV%  %FAJ%  %KASZT%  %LVL%.szint  %JELLEM1%-%JELLEM2%, %NEV%.txt, Karakter
+
+Iniwrite, Vagyon: %AU% arany, %NEV%.txt, Felszereles
+Iniwrite, %Kieg3%, %NEV%.txt, Felszereles
+Iniwrite, %KIEG2%, %NEV%.txt, Felszereles
+Iniwrite, %KIEG1%, %NEV%.txt, Felszereles
+Iniwrite, %TASKA%, %NEV%.txt, Felszereles
+Iniwrite, %PAN% Pancel  MGT:%MGT%  SFE:%SFE%,%NEV%.txt, Felszereles
+Iniwrite, %PAJZS% Pajzs  KE:%PKE%(%BPKE%)  TE:%PTE%(%BPTE%)  VE:%PVE%(%BPVE%)  MGT:%PMGT%  SP:%PSP%,%NEV%.txt, Felszereles
+Iniwrite, %F3%  KE:%F3KE%(%BF3KE%)  CE:%F3CE%(%BF3CE%)  SP:%F3SP%, %NEV%.txt, Felszereles
+Iniwrite, %F2%  KE:%F2KE%(%BF2KE%)  TE:%F2TE%(%BF2TE%)  VE:%F2VE%(%BF2VE%)  SP:%F2SP%, %NEV%.txt, Felszereles
+Iniwrite, %F1%  KE:%F1KE%(%BF1KE%)  TE:%F1TE%(%BF1TE%)  VE:%F1VE%(%BF1VE%)  SP:%F1SP%, %NEV%.txt, Felszereles
+return
+
+FELSZERT:
+
+Semmi_KE=0
+Semmi_TE=0
+Semmi_VE=0
+Semmi_TAV=0
+Semmi_SP=0
+Semmi_CE=0
+Semmi_SP=0
+Semmi_MGT=0
+Semmi_SFE=0
+							;FEGYVEREK
+Okol_KE=10
+Okol_TE=4
+Okol_VE=1
+Okol_SP=1k6/2
+Buzogany_shadleki_KE=8
+Buzogany_shadleki_TE=13
+Buzogany_shadleki_VE=14
+Buzogany_shadleki_SP=1k6+1
+Csatabard_egykezes_KE=5
+Csatabard_egykezes_TE=12
+Csatabard_egykezes_VE=11
+Csatabard_egykezes_SP=1k10
+Csatabard_ketkezes_KE=0
+Csatabard_ketkezes_TE=8
+Csatabard_ketkezes_VE=6
+Csatabard_ketkezes_SP=3k6
+Fuvocso_KE=8
+Fuvocso_CE=8
+Fuvocso_TE=7
+Fuvocso_SP=1k6/6
+Ij_rovid_KE=5
+Ij_rovid_CE=8
+Ij_rovid_TE=4
+Ij_rovid_SP=1k6
+Ij_hosszu_KE=4
+Ij_hosszu_CE=8
+Ij_hosszu_TE=6
+Ij_hosszu_SP=1k6+1
+	
+F1KE:=%F1%_KE
+F1TE:=%F1%_TE
+F1VE:=%F1%_VE
+F1SP:=%F1%_SP
+BF1KE:=%F1%_KE+KE
+BF1TE:=%F1%_TE+TE
+BF1VE:=%F1%_VE+VE
+F2KE:=%F2%_KE
+F2TE:=%F2%_TE
+F2VE:=%F2%_VE
+F2SP:=%F2%_SP
+BF2KE:=%F2%_KE+KE
+BF2TE:=%F2%_TE+TE
+BF2VE:=%F2%_VE+VE
+F3KE:=%F3%_KE
+F3CE:=%F3%_CE
+F3SP:=%F3%_SP
+BF3KE:=%F3%_KE+KE
+BF3CE:=%F3%_CE+CE
+							;PAJZS
+Kicsi_KE=1
+Kicsi_TE=0
+Kicsi_VE=20
+Kicsi_MGT=0
+Kicsi_SP=1k6
+Kozepes_KE=0
+Kozepes_TE=0
+Kozepes_VE=35
+Kozepes_MGT=1
+Kozepes_SP=1k6
+Nagy_KE=0
+Nagy_TE=0
+Nagy_VE=50
+Nagy_MGT=5
+Nagy_SP=1k6
+
+PKE:=%PAJZS%_KE
+PTE:=%PAJZS%_TE
+PVE:=%PAJZS%_VE
+PMGT:=%PAJZS%_MGT
+PSP:=%PAJZS%_SP
+BPKE:=%PAJZS%_KE+KE
+BPTE:=%PAJZS%_TE+TE
+BPVE:=%PAJZS%_VE+VE
+							;PANCELOK
+Teljes_acel_MGT=8
+Teljes_acel_SFE=6
+Teljes_bronz_MGT=8
+Teljes_bronz_SFE=5
+Teljes_abbitacel_MGT=6
+Teljes_abbitacel_SFE=7
+Teljes_mithrill_MGT=4
+Teljes_mithrill_SFE=8
+
+MGT:=%PAN%_MGT
+SFE:=%PAN%_SFE
+
+goto KARLAP
+return
+
+KONSTANSOK:
+KE=0
+TE=0
+VE=0
+CE=0
+							;FAJI BONUSZ
+Ember_BEro=0
+Ember_BUgy=0
+Ember_BGyo=0
+Ember_BAll=0
+Ember_BEge=0
+Ember_BSze=0
+Ember_BInt=0
+Ember_BAka=0
+Ember_BAst=0
+
+Elf_BEro=-2
+Elf_BUgy=1
+Elf_BGyo=1
+Elf_BAll=-1
+Elf_BEge=0
+Elf_BSze=1
+Elf_BInt=0
+Elf_BAka=0
+Elf_BAst=0
+
+Felelf_BEro=-1
+Felelf_BUgy=0
+Felelf_BGyo=1
+Felelf_BAll=0
+Felelf_BEge=0
+Felelf_BSze=0
+Felelf_BInt=0
+Felelf_BAka=0
+Felelf_BAst=0
+
+Torpe_BEro=1
+Torpe_BUgy=0
+Torpe_BGyo=0
+Torpe_BAll=1
+Torpe_BEge=1
+Torpe_BSze=-2
+Torpe_BInt=-1
+Torpe_BAka=0
+Torpe_BAst=-1
+
+Udvariork_BEro=2
+Udvariork_BUgy=0
+Udvariork_BGyo=0
+Udvariork_BAll=1
+Udvariork_BEge=2
+Udvariork_BSze=-3
+Udvariork_BInt=-1
+Udvariork_BAka=0
+Udvariork_BAst=-3
+							;KASZT FIX ERTEKEK
+Harcos_Ero_min=13
+Harcos_Ero_max=20
+Harcos_Ugy_min=7
+Harcos_Ugy_max=20
+Harcos_Gyo_min=7
+Harcos_Gyo_max=20
+Harcos_All_min=9
+Harcos_All_max=20
+Harcos_Ege_min=11
+Harcos_Ege_max=20
+Harcos_Sze_min=3
+Harcos_Sze_max=18
+Harcos_Int_min=3
+Harcos_Int_max=18
+Harcos_Aka_min=7
+Harcos_Aka_max=18
+Harcos_Ast_min=6
+Harcos_Ast_max=18
+Harcos_KEA=9
+Harcos_TEA=20
+Harcos_VEA=75
+Harcos_CEA=0
+Harcos_FPA=6
+Harcos_EPA=7
+Harcos_KPA=10
+Harcos_KPS=14
+Harcos_FPS_min=5
+Harcos_FPS_max=10
+Harcos_HMS=11
+Harcos_KHM=3
+Harcos_AU_min=3
+Harcos_AU_max=18
+Harcos_UGRA=10
+Harcos_SzazalekA=0
+
+Gladiator_Ero_min=13
+Gladiator_Ero_max=20
+Gladiator_Ugy_min=7
+Gladiator_Ugy_max=20
+Gladiator_Gyo_min=7
+Gladiator_Gyo_max=20
+Gladiator_All_min=13
+Gladiator_All_max=20
+Gladiator_Ege_min=11
+Gladiator_Ege_max=20
+Gladiator_Sze_min=7
+Gladiator_Sze_max=18
+Gladiator_Int_min=3
+Gladiator_Int_max=18
+Gladiator_Aka_min=3
+Gladiator_Aka_max=18
+Gladiator_Ast_min=3
+Gladiator_Ast_max=18
+Gladiator_KEA=9
+Gladiator_TEA=20
+Gladiator_VEA=75
+Gladiator_CEA=0
+Gladiator_FPA=7
+Gladiator_EPA=8
+Gladiator_KPA=3
+Gladiator_KPS=6
+Gladiator_FPS_min=6
+Gladiator_FPS_max=11
+Gladiator_HMS=12
+Gladiator_KHM=4
+Gladiator_AU_min=2
+Gladiator_AU_max=12
+Gladiator_UGRA=20
+Gladiator_SzazalekA=0
+
+Fejvadasz_Ero_min=7
+Fejvadasz_Ero_max=18
+Fejvadasz_Ugy_min=9
+Fejvadasz_Ugy_max=18
+Fejvadasz_Gyo_min=13
+Fejvadasz_Gyo_max=20
+Fejvadasz_All_min=13
+Fejvadasz_All_max=20
+Fejvadasz_Ege_min=11
+Fejvadasz_Ege_max=20
+Fejvadasz_Sze_min=3
+Fejvadasz_Sze_max=18
+Fejvadasz_Int_min=12
+Fejvadasz_Int_max=18
+Fejvadasz_Aka_min=12
+Fejvadasz_Aka_max=18
+Fejvadasz_Ast_min=12
+Fejvadasz_Ast_max=18
+Fejvadasz_KEA=10
+Fejvadasz_TEA=20
+Fejvadasz_VEA=75
+Fejvadasz_CEA=0
+Fejvadasz_FPA=7
+Fejvadasz_EPA=6
+Fejvadasz_KPA=3
+Fejvadasz_KPS=5
+Fejvadasz_FPS_min=6
+Fejvadasz_FPS_max=11
+Fejvadasz_HMS=11
+Fejvadasz_KHM=4
+Fejvadasz_PSZI:="Af"
+Fejvadasz_AU_min=1
+Fejvadasz_AU_max=6
+Fejvadasz_UGRA=20
+Fejvadasz_SzazalekA=30
+
+Lovag_Ero_min=13
+Lovag_Ero_max=20
+Lovag_Ugy_min=3
+Lovag_Ugy_max=18
+Lovag_Gyo_min=3
+Lovag_Gyo_max=18
+Lovag_All_min=9
+Lovag_All_max=20
+Lovag_Ege_min=11
+Lovag_Ege_max=20
+Lovag_Sze_min=7
+Lovag_Sze_max=20
+Lovag_Int_min=3
+Lovag_Int_max=18
+Lovag_Aka_min=9
+Lovag_Aka_max=18
+Lovag_Ast_min=9
+Lovag_Ast_max=18
+Lovag_KEA=5
+Lovag_TEA=20
+Lovag_VEA=75
+Lovag_CEA=0
+Lovag_FPA=6
+Lovag_EPA=7
+Lovag_KPA=4
+Lovag_KPS=7
+Lovag_FPS_min=6
+Lovag_FPS_max=11
+Lovag_HMS=12
+Lovag_KHM=5
+Lovag_AU_min=2
+Lovag_AU_max=12
+Lovag_UGRA=0
+Lovag_SzazalekA=0
+
+Amazon_Ero_min=7
+Amazon_Ero_max=18
+Amazon_Ugy_min=11
+Amazon_Ugy_max=18
+Amazon_Gyo_min=11
+Amazon_Gyo_max=18
+Amazon_All_min=7
+Amazon_All_max=18
+Amazon_Ege_min=7
+Amazon_Ege_max=18
+Amazon_Sze_min=11
+Amazon_Sze_max=18
+Amazon_Int_min=3
+Amazon_Int_max=18
+Amazon_Aka_min=7
+Amazon_Aka_max=18
+Amazon_Ast_min=3
+Amazon_Ast_max=18
+Amazon_KEA=8
+Amazon_TEA=22
+Amazon_VEA=72
+Amazon_CEA=10
+Amazon_FPA=7
+Amazon_EPA=7
+Amazon_KPA=8
+Amazon_KPS=8
+Amazon_FPS_min=5
+Amazon_FPS_max=10
+Amazon_HMS=10
+Amazon_KHM=0
+Amazon_AU_min=1
+Amazon_AU_max=6
+Amazon_UGRA=0
+Amazon_SzazalekA=0
+
+Barbar_Ero_min=15
+Barbar_Ero_max=20
+Barbar_Ugy_min=11
+Barbar_Ugy_max=18
+Barbar_Gyo_min=7
+Barbar_Gyo_max=18
+Barbar_All_min=15
+Barbar_All_max=20
+Barbar_Ege_min=11
+Barbar_Ege_max=20
+Barbar_Sze_min=3
+Barbar_Sze_max=18
+Barbar_Int_min=3
+Barbar_Int_max=18
+Barbar_Aka_min=7
+Barbar_Aka_max=18
+Barbar_Ast_min=2
+Barbar_Ast_max=17
+Barbar_KEA=10
+Barbar_TEA:=26+2*LVL
+Barbar_VEA=70
+Barbar_CEA=0
+Barbar_FPA=7
+Barbar_EPA=8
+Barbar_KPA=7
+Barbar_KPS=10
+Barbar_FPS_min=6
+Barbar_FPS_max=11
+Barbar_HMS=10
+Barbar_KHM=3
+Barbar_AU_min=1
+Barbar_AU_max=6
+Barbar_UGRA=0
+Barbar_SzazalekA=0
+
+Shadleki_vivo_Ero_min=7
+Shadleki_vivo_Ero_max=18
+Shadleki_vivo_Ugy_min=11
+Shadleki_vivo_Ugy_max=20
+Shadleki_vivo_Gyo_min=11
+Shadleki_vivo_Gyo_max=20
+Shadleki_vivo_All_min=3
+Shadleki_vivo_All_max=18
+Shadleki_vivo_Ege_min=3
+Shadleki_vivo_Ege_max=18
+Shadleki_vivo_Sze_min=3
+Shadleki_vivo_Sze_max=18
+Shadleki_vivo_Int_min=12
+Shadleki_vivo_Int_max=18
+Shadleki_vivo_Aka_min=12
+Shadleki_vivo_Aka_max=18
+Shadleki_vivo_Ast_min=13
+Shadleki_vivo_Ast_max=18
+Shadleki_vivo_KEA=9
+Shadleki_vivo_TEA:=20+LVL
+Shadleki_vivo_VEA=75
+Shadleki_vivo_CEA=0
+Shadleki_vivo_FPA=5
+Shadleki_vivo_EPA=5
+Shadleki_vivo_KPA=4
+Shadleki_vivo_KPS=6
+Shadleki_vivo_FPS_min=4
+Shadleki_vivo_FPS_max=10
+Shadleki_vivo_HMS=11
+Shadleki_vivo_KHM=3
+Shadleki_vivo_PSZI:="Af"
+Shadleki_vivo_AU_min=10
+Shadleki_vivo_AU_max=20
+Shadleki_vivo_UGRA=0
+Shadleki_vivo_SzazalekA=0
+
+Aleggheri_vivo_Ero_min=7
+Aleggheri_vivo_Ero_max=18
+Aleggheri_vivo_Ugy_min=11
+Aleggheri_vivo_Ugy_max=20
+Aleggheri_vivo_Gyo_min=11
+Aleggheri_vivo_Gyo_max=20
+Aleggheri_vivo_All_min=3
+Aleggheri_vivo_All_max=18
+Aleggheri_vivo_Ege_min=3
+Aleggheri_vivo_Ege_max=18
+Aleggheri_vivo_Sze_min=3
+Aleggheri_vivo_Sze_max=18
+Aleggheri_vivo_Int_min=12
+Aleggheri_vivo_Int_max=18
+Aleggheri_vivo_Aka_min=12
+Aleggheri_vivo_Aka_max=18
+Aleggheri_vivo_Ast_min=13
+Aleggheri_vivo_Ast_max=18
+Aleggheri_vivo_KEA=9
+Aleggheri_vivo_TEA:=20
+Aleggheri_vivo_VEA:=75+LVL
+Aleggheri_vivo_CEA=0
+Aleggheri_vivo_FPA=5
+Aleggheri_vivo_EPA=5
+Aleggheri_vivo_KPA=4
+Aleggheri_vivo_KPS=6
+Aleggheri_vivo_FPS_min=4
+Aleggheri_vivo_FPS_max=10
+Aleggheri_vivo_HMS=11
+Aleggheri_vivo_KHM=3
+Aleggheri_vivo_PSZI:="Af"
+Aleggheri_vivo_AU_min=10
+Aleggheri_vivo_AU_max=20
+Aleggheri_vivo_UGRA:=20+3*LVL
+Aleggheri_vivo_SzazalekA=0
+
+Den_Aliud_vivo_Ero_min=7
+Den_Aliud_vivo_Ero_max=18
+Den_Aliud_vivo_Ugy_min=11
+Den_Aliud_vivo_Ugy_max=20
+Den_Aliud_vivo_Gyo_min=11
+Den_Aliud_vivo_Gyo_max=20
+Den_Aliud_vivo_All_min=3
+Den_Aliud_vivo_All_max=18
+Den_Aliud_vivo_Ege_min=3
+Den_Aliud_vivo_Ege_max=18
+Den_Aliud_vivo_Sze_min=3
+Den_Aliud_vivo_Sze_max=18
+Den_Aliud_vivo_Int_min=12
+Den_Aliud_vivo_Int_max=18
+Den_Aliud_vivo_Aka_min=12
+Den_Aliud_vivo_Aka_max=18
+Den_Aliud_vivo_Ast_min=13
+Den_Aliud_vivo_Ast_max=18
+Den_Aliud_vivo_KEA:=9+LVL
+Den_Aliud_vivo_TEA:=20
+Den_Aliud_vivo_VEA=75
+Den_Aliud_vivo_CEA=0
+Den_Aliud_vivo_FPA=5
+Den_Aliud_vivo_EPA=5
+Den_Aliud_vivo_KPA=4
+Den_Aliud_vivo_KPS=6
+Den_Aliud_vivo_FPS_min=4
+Den_Aliud_vivo_FPS_max=10
+Den_Aliud_vivo_HMS=11
+Den_Aliud_vivo_KHM=3
+Den_Aliud_vivo_PSZI:="Af"
+Den_Aliud_vivo_AU_min=10
+Den_Aliud_vivo_AU_max=20
+Den_Aliud_vivo_UGRA=0
+Den_Aliud_vivo_SzazalekA=0
+
+Tolvaj_Ero_min=3
+Tolvaj_Ero_max=18
+Tolvaj_Ugy_min=13
+Tolvaj_Ugy_max=20
+Tolvaj_Gyo_min=9
+Tolvaj_Gyo_max=20
+Tolvaj_All_min=3
+Tolvaj_All_max=18
+Tolvaj_Ege_min=3
+Tolvaj_Ege_max=18
+Tolvaj_Sze_min=7
+Tolvaj_Sze_max=18
+Tolvaj_Int_min=7
+Tolvaj_Int_max=18
+Tolvaj_Aka_min=3
+Tolvaj_Aka_max=18
+Tolvaj_Ast_min=3
+Tolvaj_Ast_max=18
+Tolvaj_KEA=8
+Tolvaj_TEA=17
+Tolvaj_VEA=72
+Tolvaj_CEA=10
+Tolvaj_FPA=5
+Tolvaj_EPA=4
+Tolvaj_KPA=8
+Tolvaj_KPS=10
+Tolvaj_FPS_min=4
+Tolvaj_FPS_max=9
+Tolvaj_HMS=6
+Tolvaj_KHM=1
+Tolvaj_AU_min=1
+Tolvaj_AU_max=6
+Tolvaj_UGRA=10
+Tolvaj_SzazalekA=62
+
+Bard_Ero_min=11
+Bard_Ero_max=18
+Bard_Ugy_min=11
+Bard_Ugy_max=18
+Bard_Gyo_min=11
+Bard_Gyo_max=20
+Bard_All_min=13
+Bard_All_max=18
+Bard_Ege_min=13
+Bard_Ege_max=18
+Bard_Sze_min=13
+Bard_Sze_max=20
+Bard_Int_min=12
+Bard_Int_max=18
+Bard_Aka_min=13
+Bard_Aka_max=18
+Bard_Ast_min=12
+Bard_Ast_max=18
+Bard_KEA=10
+Bard_TEA=20
+Bard_VEA=75
+Bard_CEA=15
+Bard_FPA=6
+Bard_EPA=5
+Bard_KPA=5
+Bard_KPS=8
+Bard_FPS_min=4
+Bard_FPS_max=9
+Bard_HMS=9
+Bard_KHM=2
+Bard_PSZI:="Af"
+Bard_AU_min=1
+Bard_AU_max=6
+Bard_UGRA=15
+Bard_SzazalekA=45
+
+Harcmuvesz_Ero_min=11
+Harcmuvesz_Ero_max=18
+Harcmuvesz_Ugy_min=13
+Harcmuvesz_Ugy_max=18
+Harcmuvesz_Gyo_min=13
+Harcmuvesz_Gyo_max=20
+Harcmuvesz_All_min=13
+Harcmuvesz_All_max=18
+Harcmuvesz_Ege_min=11
+Harcmuvesz_Ege_max=20
+Harcmuvesz_Sze_min=3
+Harcmuvesz_Sze_max=18
+Harcmuvesz_Int_min=12
+Harcmuvesz_Int_max=18
+Harcmuvesz_Aka_min=13
+Harcmuvesz_Aka_max=18
+Harcmuvesz_Ast_min=12
+Harcmuvesz_Ast_max=18
+Harcmuvesz_KEA=10
+Harcmuvesz_TEA=20
+Harcmuvesz_VEA=75
+Harcmuvesz_CEA=0
+Harcmuvesz_FPA=8
+Harcmuvesz_EPA=4
+Harcmuvesz_KPA=4
+Harcmuvesz_KPS=5
+Harcmuvesz_FPS_min=6
+Harcmuvesz_FPS_max=11
+Harcmuvesz_HMS=8
+Harcmuvesz_KHM=3
+Harcmuvesz_PSZI:="Slan"
+Harcmuvesz_AU_min=1
+Harcmuvesz_AU_max=6
+Harcmuvesz_UGRA=30
+Harcmuvesz_SzazalekA=22
+
+Kardmuvesz_Ero_min=9
+Kardmuvesz_Ero_max=18
+Kardmuvesz_Ugy_min=15
+Kardmuvesz_Ugy_max=20
+Kardmuvesz_Gyo_min=13
+Kardmuvesz_Gyo_max=20
+Kardmuvesz_All_min=11
+Kardmuvesz_All_max=18
+Kardmuvesz_Ege_min=11
+Kardmuvesz_Ege_max=18
+Kardmuvesz_Sze_min=3
+Kardmuvesz_Sze_max=18
+Kardmuvesz_Int_min=12
+Kardmuvesz_Int_max=18
+Kardmuvesz_Aka_min=13
+Kardmuvesz_Aka_max=18
+Kardmuvesz_Ast_min=12
+Kardmuvesz_Ast_max=18
+Kardmuvesz_KEA=10
+Kardmuvesz_TEA=20
+Kardmuvesz_VEA=75
+Kardmuvesz_CEA=0
+Kardmuvesz_FPA=8
+Kardmuvesz_EPA=4
+Kardmuvesz_KPA=4
+Kardmuvesz_KPS=5
+Kardmuvesz_FPS_min=6
+Kardmuvesz_FPS_max=11
+Kardmuvesz_HMS=8
+Kardmuvesz_KHM=3
+Kardmuvesz_PSZI:="Slan"
+Kardmuvesz_AU_min=1
+Kardmuvesz_AU_max=6
+Kardmuvesz_UGRA=10
+Kardmuvesz_SzazalekA=18
+
+Boszorkany_Ero_min=3
+Boszorkany_Ero_max=18
+Boszorkany_Ugy_min=11
+Boszorkany_Ugy_max=18
+Boszorkany_Gyo_min=7
+Boszorkany_Gyo_max=18
+Boszorkany_All_min=3
+Boszorkany_All_max=18
+Boszorkany_Ege_min=7
+Boszorkany_Ege_max=18
+Boszorkany_Sze_min=15
+Boszorkany_Sze_max=20
+Boszorkany_Int_min=12
+Boszorkany_Int_max=18
+Boszorkany_Aka_min=12
+Boszorkany_Aka_max=18
+Boszorkany_Ast_min=13
+Boszorkany_Ast_max=20
+Boszorkany_KEA=6
+Boszorkany_TEA=14
+Boszorkany_VEA=69
+Boszorkany_CEA=0
+Boszorkany_FPA=1
+Boszorkany_EPA=3
+Boszorkany_KPA=8
+Boszorkany_KPS=12
+Boszorkany_FPS_min=1
+Boszorkany_FPS_max=6
+Boszorkany_HMS=4
+Boszorkany_KHM=1
+Boszorkany_AU_min=1
+Boszorkany_AU_max=6
+Boszorkany_UGRA=0
+Boszorkany_SzazalekA=0
+
+BM_Ero_min=3
+BM_Ero_max=18
+BM_Ugy_min=13
+BM_Ugy_max=20
+BM_Gyo_min=11
+BM_Gyo_max=18
+BM_All_min=3
+BM_All_max=18
+BM_Ege_min=7
+BM_Ege_max=18
+BM_Sze_min=3
+BM_Sze_max=18
+BM_Int_min=12
+BM_Int_max=18
+BM_Aka_min=12
+BM_Aka_max=18
+BM_Ast_min=13
+BM_Ast_max=18
+BM_KEA=7
+BM_TEA=17
+BM_VEA=72
+BM_CEA=5
+BM_FPA=4
+BM_EPA=3
+BM_KPA=7
+BM_KPS=8
+BM_FPS_min=2
+BM_FPS_max=7
+BM_HMS=7
+BM_KHM=1
+BM_AU_min=1
+BM_AU_max=6
+BM_UGRA=0
+BM_SzazalekA=0
+
+Tuzvarazslo_Ero_min=7
+Tuzvarazslo_Ero_max=18
+Tuzvarazslo_Ugy_min=3
+Tuzvarazslo_Ugy_max=18
+Tuzvarazslo_Gyo_min=3
+Tuzvarazslo_Gyo_max=18
+Tuzvarazslo_All_min=7
+Tuzvarazslo_All_max=18
+Tuzvarazslo_Ege_min=7
+Tuzvarazslo_Ege_max=18
+Tuzvarazslo_Sze_min=3
+Tuzvarazslo_Sze_max=18
+Tuzvarazslo_Int_min=12
+Tuzvarazslo_Int_max=18
+Tuzvarazslo_Aka_min=12
+Tuzvarazslo_Aka_max=18
+Tuzvarazslo_Ast_min=12
+Tuzvarazslo_Ast_max=18
+Tuzvarazslo_KEA=6
+Tuzvarazslo_TEA=17
+Tuzvarazslo_VEA=72
+Tuzvarazslo_CEA=0
+Tuzvarazslo_FPA=4
+Tuzvarazslo_EPA=5
+Tuzvarazslo_KPA=3
+Tuzvarazslo_KPS=5
+Tuzvarazslo_FPS_min=2
+Tuzvarazslo_FPS_max=7
+Tuzvarazslo_HMS=8
+Tuzvarazslo_KHM=3
+Tuzvarazslo_AU_min=1
+Tuzvarazslo_AU_max=6
+Tuzvarazslo_UGRA=0
+Tuzvarazslo_SzazalekA=0
+
+Varazslo_Ero_min=3
+Varazslo_Ero_max=18
+Varazslo_Ugy_min=3
+Varazslo_Ugy_max=18
+Varazslo_Gyo_min=3
+Varazslo_Gyo_max=18
+Varazslo_All_min=3
+Varazslo_All_max=18
+Varazslo_Ege_min=3
+Varazslo_Ege_max=18
+Varazslo_Sze_min=3
+Varazslo_Sze_max=18
+Varazslo_Int_min=13
+Varazslo_Int_max=20
+Varazslo_Aka_min=13
+Varazslo_Aka_max=20
+Varazslo_Ast_min=13
+Varazslo_Ast_max=20
+Varazslo_KEA=2
+Varazslo_TEA=15
+Varazslo_VEA=70
+Varazslo_CEA=0
+Varazslo_FPA=2
+Varazslo_EPA=3
+Varazslo_KPA=7
+Varazslo_KPS=10
+Varazslo_FPS_min=1
+Varazslo_FPS_max=6
+Varazslo_HMS=4
+Varazslo_KHM=1
+Varazslo_AU_min=1
+Varazslo_AU_max=6
+Varazslo_UGRA=0
+Varazslo_SzazalekA=0
+
+Polgar_Ero_min=3
+Polgar_Ero_max=18
+Polgar_Ugy_min=3
+Polgar_Ugy_max=18
+Polgar_Gyo_min=3
+Polgar_Gyo_max=18
+Polgar_All_min=3
+Polgar_All_max=18
+Polgar_Ege_min=3
+Polgar_Ege_max=18
+Polgar_Sze_min=3
+Polgar_Sze_max=18
+Polgar_Int_min=3
+Polgar_Int_max=18
+Polgar_Aka_min=3
+Polgar_Aka_max=18
+Polgar_Ast_min=3
+Polgar_Ast_max=18
+Polgar_KEA=5
+Polgar_TEA=17
+Polgar_VEA=72
+Polgar_CEA=0
+Polgar_FPA=5
+Polgar_EPA=4
+Polgar_KPA=8
+Polgar_KPS=10
+Polgar_FPS_min=3
+Polgar_FPS_max=8
+Polgar_HMS=6
+Polgar_KHM=1
+Polgar_AU_min=1
+Polgar_AU_max=20
+Polgar_UGRA=0
+Polgar_SzazalekA=0
+
+Goto FOERTEKEK
+return
+
+F2::reload
